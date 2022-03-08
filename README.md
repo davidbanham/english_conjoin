@@ -20,6 +20,10 @@ func main() {
 
 	fmt.Println(english_conjoin.Conjoin(example, "and")) // Alice, Bob and Charlie
 	fmt.Println(english_conjoin.Conjoin(example, "or"))  // Alice, Bob or Charlie
+
+	dupeExample := []string{"Milk", "Flour", "Eggs", "Rice", "Flour", "Rice", "Rice"}
+
+	fmt.Println(english_conjoin.DeDuplicate(dupeExample))  // Milk, Flour (x2), Eggs, Rice (x3)
 }
 ```
 

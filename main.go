@@ -1,6 +1,9 @@
 package english_conjoin
 
-import "strings"
+import (
+	"fmt"
+	"strings"
+)
 
 func Conjoin(items []string, joiner string) string {
 	if len(items) == 0 {
@@ -28,4 +31,26 @@ func ConjoinAnd(items []string) string {
 
 func ConjoinOr(items []string) string {
 	return Conjoin(items, "or")
+}
+
+func DeDuplicate(items []string) []string {
+	hits := map[string]int{}
+	for _, line := range items {
+		hits[line]++
+	}
+	output := []string{}
+	fed := map[string]bool{}
+	for _, line := range items {
+		if fed[line] {
+			continue
+		}
+		count := hits[line]
+		newline := line
+		if count > 1 {
+			newline = fmt.Sprintf("%s (x%d)", line, hits[line])
+		}
+		output = append(output, newline)
+		fed[line] = true
+	}
+	return output
 }

@@ -5,16 +5,19 @@ import (
 	"strings"
 )
 
-func Conjoin(items []string, joiner string) string {
-	if len(items) == 0 {
+func Conjoin(input []string, joiner string) string {
+	if len(input) == 0 {
 		return ""
 	}
-	if len(items) == 1 {
-		return items[0]
+	if len(input) == 1 {
+		return input[0]
 	}
-	if len(items) == 2 { // "a and b" not "a, and b"
-		return items[0] + " " + joiner + " " + items[1]
+	if len(input) == 2 { // "a and b" not "a, and b"
+		return input[0] + " " + joiner + " " + input[1]
 	}
+
+	items := make([]string, len(input))
+	copy(items, input)
 
 	last, items := items[len(items)-1], items[:len(items)-1]
 	secondLast, items := items[len(items)-1], items[:len(items)-1]
@@ -33,7 +36,10 @@ func ConjoinOr(items []string) string {
 	return Conjoin(items, "or")
 }
 
-func DeDuplicate(items []string) []string {
+func DeDuplicate(input []string) []string {
+	items := make([]string, len(input))
+	copy(items, input)
+
 	hits := map[string]int{}
 	for _, line := range items {
 		hits[line]++

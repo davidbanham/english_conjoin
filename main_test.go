@@ -94,3 +94,20 @@ func TestDeDuplicator(t *testing.T) {
 		})
 	}
 }
+
+func TestMutation(t *testing.T) {
+	spec := []string{"a", "b", "c"}
+	input := []string{"a", "b", "c"}
+	ConjoinAnd(input)
+	for i, v := range spec {
+		if input[i] != v {
+			t.Errorf("got %s, want %s", input[i], v)
+		}
+	}
+	Conjoin(input, "and")
+	for i, v := range spec {
+		if input[i] != v {
+			t.Errorf("got %s, want %s", input[i], v)
+		}
+	}
+}

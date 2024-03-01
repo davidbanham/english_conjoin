@@ -60,3 +60,23 @@ func DeDuplicate(input []string) []string {
 	}
 	return output
 }
+
+func AorAn(input string) string {
+	if len(input) == 0 {
+		return ""
+	}
+	if strings.ContainsAny(strings.ToLower(string(input[0])), "aeiou") {
+		return "an"
+	}
+	return "a"
+}
+
+func AorAnUpper(input string) string {
+	if len(input) == 0 {
+		return ""
+	}
+	if strings.ContainsAny(strings.ToLower(string(input[0])), "aeiou") {
+		return "An"
+	}
+	return "A"
+}
